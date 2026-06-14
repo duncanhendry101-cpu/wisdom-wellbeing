@@ -1,13 +1,19 @@
 import type { Resource } from "@/types/resource";
 import styles from "./ResourceCard.module.css";
+import { useResourceModal } from "@/context/ResourceModalContext";
 
 interface ResourceProps {
   data: Resource;
 }
 
 export function ResourceCard({ data }: ResourceProps) {
+  const { openResourceModal } = useResourceModal();
+
   return (
-    <div className={styles.resourceContainer}>
+    <div
+      className={styles.resourceContainer}
+      onClick={() => openResourceModal(data)}
+    >
       <img
         className={styles.thumbnail}
         src={data.thumbnail}
