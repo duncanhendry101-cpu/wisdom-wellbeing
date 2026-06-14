@@ -9,7 +9,6 @@ export const fetchResources = async (): Promise<Resource[]> => {
     }
 
     const data: Resource[] = await response.json();
-    console.log("Fetched resources:", data);
 
     return data;
   } catch (error) {
