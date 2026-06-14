@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 26" width="100%" height="100%">
+  <text x="0" y="20" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="28" 
+        letter-spacing="-0.5">
+    <tspan font-weight="800" fill="#0b2545">wisdom</tspan>
+    <tspan font-weight="300" fill="#139a8c">wellbeing</tspan>
+  </text>
+</svg>
