@@ -31,4 +31,8 @@
   &:hover {
     color: var(--color-primary-accent);
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }

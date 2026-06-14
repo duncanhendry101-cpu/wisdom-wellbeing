@@ -6,7 +6,7 @@ import styles from "./Layout.module.css";
 
 export function Layout() {
   return (
-    <div className="app-container">
+    <>
       {/* Persistant Top Navigation Shell */}
       <Header />
 
@@ -17,6 +17,6 @@ export function Layout() {
 
       {/* Persistant Footer */}
       <Footer />
-    </div>
+    </>
   );
 }
