@@ -7,15 +7,10 @@ import styles from "./Layout.module.css";
 export function Layout() {
   return (
     <>
-      {/* Persistant Top Navigation Shell */}
       <Header />
-
-      {/* Dynamic View Mounting Area */}
       <main className={styles.layoutContainer}>
         <Outlet />
       </main>
-
-      {/* Persistant Footer */}
       <Footer />
     </>
   );

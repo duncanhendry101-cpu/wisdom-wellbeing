@@ -1,16 +1,27 @@
-import type { Resource } from "@/types/resource";
 import styles from "./Home.module.css";
 import { fetchResources } from "@/util/fetchResources";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ResourceCard } from "@/components/ResourceCard/ResourceCard";
 import { ResourceFilter } from "./ResourceFilter/ResourceFilter";
+import { useResourceContext } from "@/context/ResourceContext";
 
 export function Home() {
-  const [resources, setResources] = useState<Resource[]>([]);
+  const { resources, setResources, setMasterResources } = useResourceContext();
 
   const loadResources = async () => {
     const data = await fetchResources();
-    setResources(data);
+
+    // sort newest to oldest by default
+    const sortedData = [...data].sort((a, b) => {
+      return (
+        new Date(b.date_uploaded).getTime() -
+        new Date(a.date_uploaded).getTime()
+      );
+    });
+
+    // set cached resources and master resources in context
+    setResources(sortedData);
+    setMasterResources(sortedData);
   };
 
   useEffect(() => {
