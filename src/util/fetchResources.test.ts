@@ -8,43 +8,43 @@ import {
 } from "@jest/globals";
 import { fetchResources } from "./fetchResources";
 
-// 1. Correctly type a mock function wrapper for fetch
-const mockFetch = jest.fn<() => Promise<any>>();
-
 describe("fetchResources", () => {
-  beforeEach(() => {
-    // 2. Safely cast our mock function to overwrite the global fetch property
-    global.fetch = mockFetch as unknown as typeof global.fetch;
+  // Create a clean spy placeholder variable
+  let fetchSpy: jest.SpiedFunction<typeof fetch>;
 
-    // Suppress console outputs
+  beforeEach(() => {
+    // 1. Spy on the global fetch function cleanly—no type casting required
+    fetchSpy = jest.spyOn(globalThis, "fetch");
+
+    // Suppress console outputs to keep your test runs readable
     jest.spyOn(console, "log").mockImplementation(() => {});
     jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
+    // 2. Automatically restores global fetch back to its original state
     jest.restoreAllMocks();
-    mockFetch.mockReset(); // Clean up the fetch mock evaluation history
   });
 
   it("returns data when fetch is successful", async () => {
     const mockData = [{ id: "001", title: "Test Resource" }];
 
-    // 3. Use the typed mock wrapper instead of a sketchy global cast
-    mockFetch.mockResolvedValueOnce({
+    // 3. Chain your mock resolution directly onto the clean spy
+    fetchSpy.mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
-    });
+    } as Response); // Simple cast to mock the minimal expected native response shape
 
     const result = await fetchResources();
 
     expect(result).toEqual(mockData);
-    expect(mockFetch).toHaveBeenCalledWith("/data/mock.json");
+    expect(fetchSpy).toHaveBeenCalledWith("/data/mock.json");
   });
 
   it("returns an empty array when fetch fails", async () => {
-    mockFetch.mockResolvedValueOnce({
+    fetchSpy.mockResolvedValueOnce({
       ok: false,
-    });
+    } as Response);
 
     const result = await fetchResources();
 
