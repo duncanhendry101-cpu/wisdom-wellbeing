@@ -1,0 +1,16 @@
+:root {
+  /* Primary Brand Colors */
+  --color-primary-dark: #0b2545;
+  --color-primary-accent: #139a8c;
+
+  /* Secondary Wellness / Category Colors */
+  --color-cat-recipe: #a3b19b;
+  --color-cat-meditation: #9f92b2;
+  --color-cat-article: #d9a05b;
+
+  /* Neutral Interface Colors */
+  --color-bg-main: #f4f7f6;
+  --color-card-white: #ffffff;
+  --color-text-charcoal: #2c3e50;
+  --color-border-grey: #e2e8f0;
+}
