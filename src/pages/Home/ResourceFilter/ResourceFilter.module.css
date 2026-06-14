@@ -1,0 +1,11 @@
+.filterContainer {
+  display: flex;
+  padding: 20px 0;
+  background-color: var(--color-primary-dark);
+}
+
+.filterInner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
